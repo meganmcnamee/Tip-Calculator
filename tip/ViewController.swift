@@ -1,0 +1,49 @@
+//
+//  ViewController.swift
+//  tip
+//
+//  Created by user178618 on 8/25/20.
+//  Copyright © 2020 Codepath. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    //outlets - all the elements on your screen that you want to configure
+    @IBOutlet weak var billField: UITextField!
+    @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var tipControl: UISegmentedControl!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+    //pile of actions - applying your logic
+    @IBAction func onTap(_ sender: Any) {
+        
+        print("Hello")
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func calculateTip(_ sender: Any) {
+        
+        //Get the bill amount
+        let bill = Double(billField.text!) ?? 0
+        //everything left of the "?" if it's not vaild, change to 0
+        
+        //Calculate the tip and total
+        let tipPercentages = [0.15 , 0.18 , 0.2]
+        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let total = bill + tip
+        
+        //Update the tip and total labels
+        tipLabel.text = String(format: "$%.2f", tip)
+        totalLabel.text = String(format: "$%.2f", total)
+    }
+}
+
+
